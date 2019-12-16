@@ -1,0 +1,314 @@
+2019/10/30 00:33:23 [INFO] Terraform version: 0.12.12  
+2019/10/30 00:33:23 [INFO] Go runtime version: go1.12.9
+2019/10/30 00:33:23 [INFO] CLI args: []string{"/usr/local/bin/terraform", "apply", "-auto-approve"}
+2019/10/30 00:33:23 [DEBUG] Attempting to open CLI config file: /home/k8sadmin/.terraformrc
+2019/10/30 00:33:23 [DEBUG] File doesn't exist, but doesn't need to. Ignoring.
+2019/10/30 00:33:23 [INFO] CLI command args: []string{"apply", "-auto-approve"}
+2019/10/30 00:33:23 [DEBUG] checking for provider in "."
+2019/10/30 00:33:23 [DEBUG] checking for provider in "/usr/local/bin"
+2019/10/30 00:33:23 [DEBUG] checking for provider in ".terraform/plugins/linux_amd64"
+2019/10/30 00:33:23 [DEBUG] found provider "terraform-provider-kubernetes_v1.9.0_x4"
+2019/10/30 00:33:23 [DEBUG] found valid plugin: "kubernetes", "1.9.0", "/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4"
+2019/10/30 00:33:23 [DEBUG] checking for provisioner in "."
+2019/10/30 00:33:23 [DEBUG] checking for provisioner in "/usr/local/bin"
+2019/10/30 00:33:23 [DEBUG] checking for provisioner in ".terraform/plugins/linux_amd64"
+2019/10/30 00:33:23 [TRACE] Meta.Backend: backend <nil> does not support operations, so wrapping it in a local backend
+2019/10/30 00:33:23 [INFO] backend/local: starting Apply operation
+2019/10/30 00:33:23 [TRACE] backend/local: requesting state manager for workspace "default"
+2019/10/30 00:33:23 [TRACE] backend/local: state manager for workspace "default" will:
+ - read initial snapshot from terraform.tfstate
+ - write new snapshots to terraform.tfstate
+ - create any backup at terraform.tfstate.backup
+2019/10/30 00:33:23 [TRACE] backend/local: requesting state lock for workspace "default"
+2019-10-30T00:33:23.363+0800 [DEBUG] plugin: starting plugin: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 args=[/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4]
+2019-10-30T00:33:23.363+0800 [DEBUG] plugin: plugin started: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65029
+2019-10-30T00:33:23.363+0800 [DEBUG] plugin: waiting for RPC address: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4
+2019-10-30T00:33:23.377+0800 [INFO]  plugin.terraform-provider-kubernetes_v1.9.0_x4: configuring server automatic mTLS: timestamp=2019-10-30T00:33:23.376+0800
+2019-10-30T00:33:23.399+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: plugin address: address=/tmp/plugin765857176 network=unix timestamp=2019-10-30T00:33:23.399+0800
+2019-10-30T00:33:23.399+0800 [DEBUG] plugin: using plugin: version=5
+2019/10/30 00:33:23 [TRACE] GRPCProvider: GetSchema
+2019-10-30T00:33:23.474+0800 [DEBUG] plugin: plugin process exited: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65029
+2019-10-30T00:33:23.474+0800 [DEBUG] plugin: plugin exited
+2019/10/30 00:33:23 [TRACE] terraform.NewContext: complete
+2019/10/30 00:33:23 [INFO] terraform: building graph: GraphTypeValidate
+2019/10/30 00:33:23 [DEBUG] ReferenceTransformer: "kubernetes_deployment.demo-nfs-deploy" references: []
+2019/10/30 00:33:23 [DEBUG] ReferenceTransformer: "kubernetes_service.demo-nfs-svc" references: []
+2019/10/30 00:33:23 [DEBUG] ReferenceTransformer: "provider.kubernetes" references: []
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.ReferenceTransformer (no changes)
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.CountBoundaryTransformer
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.CountBoundaryTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy - *terraform.NodeValidatableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+kubernetes_service.demo-nfs-svc - *terraform.NodeValidatableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+meta.count-boundary (EachMode fixup) - *terraform.NodeCountBoundary
+  kubernetes_deployment.demo-nfs-deploy - *terraform.NodeValidatableResource
+  kubernetes_service.demo-nfs-svc - *terraform.NodeValidatableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+provider.kubernetes - *terraform.NodeApplyableProvider
+------
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.TargetsTransformer
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.TargetsTransformer (no changes)
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.ForcedCBDTransformer
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.ForcedCBDTransformer (no changes)
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.CloseProviderTransformer
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.CloseProviderTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy - *terraform.NodeValidatableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+kubernetes_service.demo-nfs-svc - *terraform.NodeValidatableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+meta.count-boundary (EachMode fixup) - *terraform.NodeCountBoundary
+  kubernetes_deployment.demo-nfs-deploy - *terraform.NodeValidatableResource
+  kubernetes_service.demo-nfs-svc - *terraform.NodeValidatableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+provider.kubernetes - *terraform.NodeApplyableProvider
+provider.kubernetes (close) - *terraform.graphNodeCloseProvider
+  kubernetes_deployment.demo-nfs-deploy - *terraform.NodeValidatableResource
+  kubernetes_service.demo-nfs-svc - *terraform.NodeValidatableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+------
+RACE] dag/walk: added edge: "provider.kubernetes (close)" waiting on "kubernetes_deployment.demo-nfs-deploy"
+2019-10-30T00:33:23.538+0800 [INFO]  plugin: configuring client automatic mTLS
+2019-10-30T00:33:23.561+0800 [DEBUG] plugin: starting plugin: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 args=[/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4]
+2019-10-30T00:33:23.563+0800 [DEBUG] plugin: plugin started: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65039
+2019-10-30T00:33:23.563+0800 [DEBUG] plugin: waiting for RPC address: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4
+2019-10-30T00:33:23.575+0800 [INFO]  plugin.terraform-provider-kubernetes_v1.9.0_x4: configuring server automatic mTLS: timestamp=2019-10-30T00:33:23.573+0800
+2019-10-30T00:33:23.599+0800 [DEBUG] plugin: using plugin: version=5
+2019-10-30T00:33:23.599+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: plugin address: address=/tmp/plugin819273205 network=unix timestamp=2019-10-30T00:33:23.599+0800
+2019-10-30T00:33:23.787+0800 [DEBUG] plugin: plugin process exited: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65039
+2019-10-30T00:33:23.787+0800 [DEBUG] plugin: plugin exited
+2019/10/30 00:33:23 [TRACE] [walkValidate] Exiting eval tree: provider.kubernetes (close)
+2019/10/30 00:33:23 [TRACE] vertex "provider.kubernetes (close)": visit complete
+2019/10/30 00:33:23 [TRACE] dag/walk: visiting "root"
+2019/10/30 00:33:23 [TRACE] vertex "root": starting visit (terraform.graphNodeRoot)
+2019/10/30 00:33:23 [TRACE] vertex "root": visit complete
+2019/10/30 00:33:23 [INFO] backend/local: apply calling Refresh
+2019/10/30 00:33:23 [INFO] terraform: building graph: GraphTypeRefresh
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.ConfigTransformer
+2019/10/30 00:33:23 [TRACE] ConfigTransformer: Starting for path: 
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.ConfigTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy - *terraform.NodeRefreshableManagedResource
+kubernetes_service.demo-nfs-svc - *terraform.NodeRefreshableManagedResource
+------
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.ConfigTransformer
+2019/10/30 00:33:23 [TRACE] ConfigTransformer: Starting for path: 
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.ConfigTransformer (no changes)
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.OrphanResourceInstanceTransformer
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.OrphanResourceInstanceTransformer (no changes)
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.StateTransformer
+2019/10/30 00:33:23 [TRACE] StateTransformer: creating nodes for deposed instance objects only
+2019/10/30 00:33:23 [TRACE] Completed graph transform *terraform.StateTransformer (no changes)
+2019/10/30 00:33:23 [TRACE] Executing graph transform *terraform.AttachStateTransformer
+2019/10/30 00:33:23 [TRACE] Completed graph transform 2019/10/30 00:33:23 [DEBUG] ReferenceTransformer: "kubernetes_deployment.demo-nfs-deploy" references: []
+2019/10/30 00:33:23 [DEBUG] ReferenceTransformer: "kubernetes_service.demo-nfs-svc" references: []
+2019/10/30 00:33:23 [DEBUG] ReferenceTransformer: "provider.kubernetes" references: []
+2019-10-30T00:33:23.848+0800 [INFO]  plugin: configuring client automatic mTLS
+2019-10-30T00:33:23.872+0800 [DEBUG] plugin: starting plugin: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 args=[/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4]
+2019-10-30T00:33:23.874+0800 [DEBUG] plugin: plugin started: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65048
+2019-10-30T00:33:23.874+0800 [DEBUG] plugin: waiting for RPC address: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4
+2019-10-30T00:33:23.885+0800 [INFO]  plugin.terraform-provider-kubernetes_v1.9.0_x4: configuring server automatic mTLS: timestamp=2019-10-30T00:33:23.885+0800
+2019-10-30T00:33:23.908+0800 [DEBUG] plugin: using plugin: version=5
+2019-10-30T00:33:23.908+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: plugin address: address=/tmp/plugin136943324 network=unix timestamp=2019-10-30T00:33:23.908+0800
+2019/10/30 00:33:23 [TRACE] BuiltinEvalContext: Initialized "kubernetes" provider for provider.kubernetes
+2019/10/30 00:33:23 [TRACE] <root>: eval: terraform.EvalNoop
+2019/10/30 00:33:23 [TRACE] <root>: eval: terraform.EvalNoop
+2019/10/30 00:33:23 [TRACE] <root>: eval: *terraform.EvalOpFilter
+2019/10/30 00:33:23 [TRACE] <root>: eval: *terraform.EvalSequence
+2019/10/30 00:33:23 [TRACE] <root>: eval: *terraform.EvalGetProvider
+2019/10/30 00:33:23 [TRACE] <root>: eval: *terraform.EvalOpFilter
+2019/10/30 00:33:23 [TRACE] <root>: eval: *terraform.EvalSequence
+2019/10/30 00:33:23 [TRACE] <root>: eval: *terraform.EvalConfigProvider
+2019/10/30 00:33:23 [TRACE] buildProviderConfig for provider.kubernetes: no configuration at all
+2019/10/30 00:33:23 [TRACE] GRPCProvider: GetSchema
+2019-10-30T00:33:23.983+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:23 [INFO] Successfully loaded config file (/home/k8sadmin/.kube/config; default context)
+2019/10/30 00:33:24 [DEBUG] ReferenceTransformer: "kubernetes_deployment.demo-nfs-deploy" references: []
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.ReferenceTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.RootTransformer
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.RootTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy": entering dynamic subgraph
+2019/10/30 00:33:24 [TRACE] dag/walk: updating graph
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "kubernetes_deployment.demo-nfs-deploy"
+2019/10/30 00:33:24 [TRACE] dag/walk: visiting "kubernetes_deployment.demo-nfs-deploy"
+2019/10/30 00:33:24 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy": starting visit (*terraform.NodeRefreshableManagedResourceInstance)
+[0m[1mkubernetes_deployment.demo-nfs-deploy: Refreshing state... [id=default/demo-nfs-deploy][0m
+2019-10-30T00:33:24.227+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:24 [INFO] Checking deployment demo-nfs-deploy
+2019-10-30T00:33:24.237+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:24 [INFO] Reading deployment demo-nfs-deploy
+2019-10-30T00:33:24.243+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:24 [INFO] Received deployment: &v1.Deployment{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ObjectMeta:v1.ObjectMeta{Name:"demo-nfs-deploy", GenerateName:"", Namespace:"default", SelfLink:"/apis/apps/v1/namespaces/default/deployments/demo-nfs-deploy", UID:"74889973-0f76-42ab-812d-45d62f41041e", ResourceVersion:"207290", Generation:1, CreationTimestamp:v1.Time{Time:time.Time{wall:0x0, ext:63707963514, loc:(*time.Location)(0x3156ee0)}}, DeletionTimestamp:(*v1.Time)(nil), DeletionGracePeriodSeconds:(*int64)(nil), Labels:map[string]string(nil), Annotations:map[string]string{"deployment.kubernetes.io/revision":"1"}, OwnerReferences:[]v1.OwnerReference(nil), Initializers:(*v1.Initializers)(nil), Finalizers:[]string(nil), ClusterName:""}, Spec:v1.DeploymentSpec{Replicas:(*int32)(0xc000b3f45c), Selector:(*v1.LabelSelector)(0xc0007abb80), Template:v1.PodTemplateSpec{ObjectMeta:v1.ObjectMeta{Name:"", GenerateName:"", Namespace:"default", SelfLink:"", UID:"", ResourceVersion:"", Generation:0, CreationTimestamp:v1.Time{Time:time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}}, DeletionTimestamp:(*v1.Time)(nil), DeletionGracePeriodSeconds:(*int64)(nil), Labels:map[string]string{"app":"nginx-nfs-demo"}, Annotations:map[string]string(nil), OwnerReferences:[]v1.OwnerReference(nil), Initializers:(*v1.Initializers)(nil), Finalizers:[]string(nil), ClusterName:""}, Spec:v1.PodSpec{Volumes:[]v1.Volume{v1.Volume{Name:"nfs-pvc-storage", VolumeSource:v1.VolumeSource{HostPath:(*v1.HostPathVolumeSource)(nil), EmptyDir:(*v1.EmptyDirVolumeSource)(nil), GCEPersistentDisk:(*v1.GCEPersistentDiskVolumeSource)(nil), AWSElasticBlockStore:(*v1.AWSElasticBlockStoreVolumeSource)(nil), GitRepo:(*v1.GitRepoVolumeSource)(nil), Secret:(*v1.SecretVolumeSource)(nil), NFS:(*v1.NFSVolumeSource)(nil), ISCSI:(*v1.ISCSIVolumeSource)(nil), Glusterfs:(*v1.GlusterfsVolumeSource)(nil), PersistentVolumeClaim:(*v1.PersistentVolumeClaimVolumeSource)(0xc0007abba0), RBD:(*v1.RBDVolumeSource)(nil), FlexVolume:(*v1.FlexVolumeSource)(nil), Cinder:(*v1.CinderVolumeSource)(nil), CephFS:(*v1.CephFSVolumeSource)(nil), Flocker:(*v1.FlockerVolumeSource)(nil), DownwardAPI:(*v1.DownwardAPIVolumeSource)(nil), FC:(*v1.FCVolumeSource)(nil), AzureFile:(*v1.AzureFileVolumeSource)(nil), ConfigMap:(*v1.ConfigMapVolumeSource)(nil), VsphereVolume:(*v1.VsphereVirtualDiskVolumeSource)(nil), Quobyte:(*v1.QuobyteVolumeSource)(nil), AzureDisk:(*v1.AzureDiskVolumeSource)(nil), PhotonPersistentDisk:(*v1.PhotonPersistentDiskVolumeSource)(nil), Projected:(*v1.ProjectedVolumeSource)(nil), PortworxVolume:(*v1.PortworxVolumeSource)(nil), ScaleIO:(*v1.ScaleIOVolumeSource)(nil), StorageOS:(*v1.StorageOSVolumeSource)(nil)}}}, InitContainers:[]v1.Container(nil), Containers:[]v1.Container{v1.Container{Name:"nginx-nfs-demo", Image:"nginx", Command:[]string(nil), Args:[]string(nil), WorkingDir:"", Ports:[]v1.ContainerPort{v1.ContainerPort{Name:"", HostPort:0, ContainerPort:80, Protocol:"TCP", HostIP:""}}, EnvFrom:[]v1.EnvFromSource(nil), Env:[]v1.EnvVar(nil), Resources:v1.ResourceRequirements{Limits:v1.ResourceList(nil), Requests:v1.ResourceList(nil)}, VolumeMounts:[]v1.VolumeMount{v1.VolumeMount{Name:"nfs-pvc-storage", ReadOnly:false, MountPath:"/usr/share/nginx/", SubPath:"", MountPropagation:(*v1.MountPropagationMode)(nil)}}, VolumeDevices:[]v1.VolumeDevice(nil), LivenessProbe:(*v1.Probe)(nil), ReadinessProbe:(*v1.Probe)(nil), Lifecycle:(*v1.Lifecycle)(nil), TerminationMessagePath:"/dev/termination-log", TerminationMessagePolicy:"File", ImagePullPolicy:"Always", SecurityContext:(*v1.SecurityContext)(nil), Stdin:false, StdinOnce:false, TTY:false}}, RestartPolicy:"Always", TerminationGracePeriodSeconds:(*int64)(0xc000b3f560), ActiveDeadlineSeconds:(*int64)(nil), DNSPolicy:"ClusterFirst", NodeSelector:map[string]string(nil), ServiceAccountName:"", DeprecatedServiceAccount:"", AutomountServiceAccountToken:(*bool)(0xc000b3f568), NodeName:"", HostNetwork:false, HostPID:false, HostIPC:false, ShareProcessNamespace:(*bool)(0xc000b3f569), SecurityContext:(*v1.PodSecurityContext)(0xc000081260), ImagePullSecrets:[]v1.LocalObjectReference(nil), Hostname:"", Subdomain:"", Affinity:(*v1.Affinity)(nil), SchedulerName:"default-scheduler", Tolerations:[]v1.Toleration(nil), HostAliases:[]v1.HostAlias(nil), PriorityClassName:"", Priority:(*int32)(nil), DNSConfig:(*v1.PodDNSConfig)(nil), ReadinessGates:[]v1.PodReadinessGate(nil), RuntimeClassName:(*string)(nil), EnableServiceLinks:(*bool)(nil)}}, Strategy:v1.DeploymentStrategy{Type:"RollingUpdate", RollingUpdate:(*v1.RollingUpdateDeployment)(0xc000844660)}, MinReadySeconds:0, RevisionHistoryLimit:(*int32)(0xc000b3f5cc), Paused:false, ProgressDeadlineSeconds:(*int32)(0xc000b3f5d0)}, Status:v1.DeploymentStatus{ObservedGeneration:1, Replicas:1, UpdatedReplicas:1, ReadyReplicas:1, AvailableReplicas:1, UnavailableReplicas:0, Conditions:[]v1.DeploymentCondition{v1.DeploymentCondition{Type:"Available", Status:"True", LastUpdateTime:v1.Time{Time:time.Time{wall:0x0, ext:63707963518, loc:(*time.Location)(0x3156ee0)}}, LastTransitionTime:v1.Time{Time:time.Time{wall:0x0, ext:63707963518, loc:(*time.Location)(0x3156ee0)}}, Reason:"MinimumReplicasAvailable", Message:"Deployment has minimum availability."}, v1.DeploymentCondition{Type:"Progressing", Status:"True", LastUpdateTime:v1.Time{Time:time.Time{wall:0x0, ext:63707963518, loc:(*time.Location)(0x3156ee0)}}, LastTransitionTime:v1.Time{Time:time.Time{wall:0x0, ext:63707963514, loc:(*time.Location)(0x3156ee0)}}, Reason:"NewReplicaSetAvailable", Message:"ReplicaSet \"demo-nfs-deploy-66c5f67788\" has successfully progressed."}}, CollisionCount:(*int32)(nil)}}
+2019-10-30T00:33:24.348+0800 [DEBUG] plugin: plugin process exited: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65048
+2019-10-30T00:33:24.348+0800 [DEBUG] plugin: plugin exited
+2019/10/30 00:33:24 [TRACE] [walkRefresh] Exiting eval tree: provider.kubernetes (close)
+2019/10/30 00:33:24 [TRACE] vertex "provider.kubernetes (close)": visit complete
+2019/10/30 00:33:24 [INFO] backend/local: apply calling Plan
+2019/10/30 00:33:24 [INFO] terraform: building graph: GraphTypePlan
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.ConfigTransformer
+2019/10/30 00:33:24 [TRACE] ConfigTransformer: Starting for path: 
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.ConfigTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy - *terraform.NodePlannableResource
+kubernetes_service.demo-nfs-svc - *terraform.NodePlannableResource
+------
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.LocalTransformer
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.LocalTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.OutputTransformer
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.OutputTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.OrphanResourceInstanceTransformer
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.OrphanResourceInstanceTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.StateTransformer
+2019/10/30 00:33:24 [TRACE] StateTransformer: creating nodes for deposed instance objects only
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.StateTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.OrphanOutputTransformer
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.OrphanOutputTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terrafoformer
+2019/10/30 00:33:24 [DEBUG] adding implicit provider configuration provider.kubernetes, implied first by kubernetes_deployment.demo-nfs-deploy
+2019/10/30 00:33:24 [TRACE] (graphTransformerMulti) Completed graph transform *terraform.MissingProviderTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy - *terraform.NodePlannableResource
+kubernetes_service.demo-nfs-svc - *terraform.NodePlannableResource
+provider.kubernetes - *terraform.NodeApplyableProvider
+------
+2019/10/30 00:33:24 [TRACE] (graphTransformerMulti) Executing graph transform *terraform.ProviderTransformer
+2019/10/30 00:33:24 [TRACE] ProviderTransformer: kubernetes_deployment.demo-nfs-deploy is provided by provider.kubernetes or inherited equivalent
+2019/10/30 00:33:24 [TRACE] ProviderTransformer: kubernetes_service.demo-nfs-svc is provided by provider.kubernetes or inherited equivalent
+2019/10/30 00:33:24 [TRACE] ProviderTransformer: exact match for provider.kubernetes serving kubernetes_deployment.demo-nfs-deploy
+2019/10/30 00:33:24 [DEBUG] ProviderTransformer: "kubernetes_deployment.demo-nfs-deploy" (*terraform.NodePlannableResource) needs provider.kubernetes
+2019/10/30 00:33:24 [TRACE] ProviderTransformer: exact match for provider.kubernetes serving kubernetes_service.demo-nfs-svc
+2019/10/30 00:33:24 [DEBUG] ProviderTransformer: "kubernetes_service.demo-nfs-svc" (*terraform.NodePlannableResource) needs provider.kubernetes
+2019/10/30 00:33:24 [TRACE] (graphTransformerMulti) Completed graph transform *terraform.ProviderTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy - *terraform.NodePlannableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+kubernetes_service.demo-nfs-svc - *terraform.NodePlannableResource
+  provider.kubernetes - *terraform.NodeApplyableProvider
+provider.kubernetes - *terraform.NodeApplyableProvider
+------
+2019/10/30 00:33:24 [TRACE] (graphTransformerMulti) Executing graph transform *terraform.PruneProviderTransformer
+2019/10/30 00:33:24 [TRACE] (graphTransformerMulti) Completed gr2019/10/30 00:33:24 [DEBUG] ReferenceTransformer: "kubernetes_deployment.demo-nfs-deploy" references: []
+2019/10/30 00:33:24 [DEBUG] ReferenceTransformer: "kubernetes_service.demo-nfs-svc" references: []
+2019/10/30 00:33:24 [DEBUG] ReferenceTransformer: "provider.kubernetes" references: []
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.ReferenceTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.CountBoundaryTransformer
+ce
+root - terraform.graphNodeRoot
+  meta.count-boundary (EachMode fixup) - *terraform.NodeCountBoundary
+  provider.kubernetes (close) - *terraform.graphNodeCloseProvider
+------
+2019/10/30 00:33:24 [DEBUG] Starting graph walk: walkPlan
+2019/10/30 00:33:24 [TRACE] dag/walk: updating graph
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "kubernetes_service.demo-nfs-svc"
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "provider.kubernetes"
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "meta.count-boundary (EachMode fixup)"
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "provider.kubernetes (close)"
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "root"
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "kubernetes_deployment.demo-nfs-deploy"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "kubernetes_deployment.demo-nfs-deploy" waiting on "provider.kubernetes"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "meta.count-boundary (EachMode fixup)" waiting on "kubernetes_deployment.demo-nfs-deploy"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "provider.kubernetes (close)" waiting on "kubernetes_service.demo-nfs-svc"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "kubernetes_service.demo-nfs-svc" waiting on "provider.kubernetes"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "meta.count-boundary (EachMode fixup)" waiting on "kubernetes_service.demo-nfs-svc"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "provider.kubernetes (close)" waiting on "kubernetes_deployment.demo-nfs-deploy"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "root" waiting on "meta.count-boundary (EachMode fixup)"
+2019/10/30 00:33:24 [TRACE] dag/walk: added edge: "root" waiting on "provider.kubernetes (close)"
+2019/10/30 00:33:24 [TRACE] dag/walk: dependencies changed for "kubernetes_deployment.demo-nfs-deploy", sending new deps
+2019/10/30 00:33:24 [TRACE] dag/walk: dependencies changed for "meta.count-boundary (EachMode fixup)", sending new deps
+2019/10/30 00:33:24 [TRACE] dag/walk2019-10-30T00:33:24.411+0800 [INFO]  plugin: configuring client automatic mTLS
+2019-10-30T00:33:24.433+0800 [DEBUG] plugin: starting plugin: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 args=[/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4]
+2019-10-30T00:33:24.435+0800 [DEBUG] plugin: plugin started: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65057
+2019-10-30T00:33:24.435+0800 [DEBUG] plugin: waiting for RPC address: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4
+2019-10-30T00:33:24.447+0800 [INFO]  plugin.terraform-provider-kubernetes_v1.9.0_x4: configuring server automatic mTLS: timestamp=2019-10-30T00:33:24.446+0800
+2019-10-30T00:33:24.469+0800 [DEBUG] plugin: using plugin: version=5
+2019-10-30T00:33:24.469+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: plugin address: address=/tmp/plugin628975341 network=unix timestamp=2019-10-30T00:33:24.469+0800
+2019-10-30T00:33:24.544+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:24 [INFO] Successfully loaded config file (/home/k8sadmin/.kube/config; default context)
+2019/10/30 00:33:24 [DEBUG] ReferenceTransformer: "kubernetes_deployment.demo-nfs-deploy" references: []
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.ReferenceTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.RootTransformer
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.RootTransformer (no changes)
+2019/10/30 00:33:24 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy": entering dynamic subgraph
+2019/10/30 00:33:24 [TRACE] dag/walk: updating graph
+2019/10/30 00:33:24 [TRACE] dag/walk: added new vertex: "kubernetes_deployment.demo-nfs-deploy"
+2019/10/30 00:33:24 [TRACE] dag/walk: visiting "kubernetes_deployment.demo-nfs-deploy"
+2019/10/30 00:33:24 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy": starting visit (*terraform.NodePlannableResourceInstance)
+2019/10/30 00:33:24 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy": evaluating
+2019/10/30 00:33:24 [TRACE] [walkPlan] Entering eval tree: kubernetes_deployment.demo-nfs-deploy
+2019/10/30 00:33:24 [TRACE] <root>: eval: *terraform.EvalSequence
+2019/10/30 00:33:24 [TRACE] <root>: eval: *terraform.EvalGetProvider
+2019/10/30 00:33:24 [TRACE] <root>: eval: *terraform.EvalReadState
+2019/10/30 00:33:24 [TRACE] EvalReadState: reading state for kubernetes_deployment.demo-nfs-deploy
+2019/10/30 00:33:24 [TRACE] UpgradeResourceState: schema version of kubernetes_deployment.demo-nfs-deploy is still 0; calling provider "kubernetes" for any other minor fixups
+2019/10/30 00:33:24 [TRACE] GRPCProvider: UpgradeResourceState
+2019/10/30 00:33:24 [TRACE] [walkPlan] Exiting eval tree: kubernetes_service.demo-nfs-svc
+2019/10/30 00:33:24 [TRACE] vertex "kubernetes_service.demo-nfs-svc": expanding dynamic subgraph
+2019/10/30 00:33:24 [TRACE] Executing graph transform *terraform.ResourceCountTransformer
+2019/10/30 00:33:24 [TRACE] Completed graph transform *terraform.ResourceCountTransformer with new graph:
+kubernetes_service.demo-nfs-svc - *terraform.NodePlannableResourceInstance
+------
+2019/10/32019-10-30T00:33:25.110+0800 [DEBUG] plugin: plugin process exited: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65057
+2019-10-30T00:33:25.110+0800 [DEBUG] plugin: plugin exited
+2019/10/30 00:33:25 [TRACE] [walkPlan] Exiting eval tree: provider.kubernetes (close)
+2019/10/30 00:33:25 [TRACE] vertex "provider.kubernetes (close)": visit complete
+2019/10/30 00:33:25 [TRACE] dag/walk: visiting "root"
+2019/10/30 00:33:25 [TRACE] vertex "root": starting visit (terraform.graphNodeRoot)
+2019/10/30 00:33:25 [TRACE] vertex "root": visit complete
+2019/10/30 00:33:25 [INFO] backend/local: apply calling Apply
+2019/10/30 00:33:25 [INFO] terraform: building graph: GraphTypeApply
+2019/10/30 00:33:25 [TRACE] Executing graph transform *terraform.ConfigTransformer
+2019/10/30 00:33:25 [TRACE] ConfigTransformer: Starting for path: 
+2019/10/30 00:33:25 [TRACE] Completed graph transform *terraform.ConfigTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy (prepare state) - *terraform.NodeApplyableResource
+kubernetes_service.demo-nfs-svc (prepare state) - *terraform.NodeApplyableResource
+------
+2019/10/30 00:33:25 [TRACE] Executing graph transform *terraform.DiffTransformer
+2019/10/30 00:33:25 [TRACE] DiffTransformer starting
+2019/10/30 00:33:25 [TRACE] DiffTransformer: found Create change for kubernetes_service.demo-nfs-svc 
+2019/10/30 00:33:25 [TRACE] DiffTransformer: kubernetes_service.demo-nfs-svc will be represented by kubernetes_service.demo-nfs-svc
+2019/10/30 00:33:25 [TRACE] DiffTransformer: found NoOp change for kubernetes_deployment.demo-nfs-deploy 
+2019/10/30 00:33:25 [TRACE] DiffTransformer complete
+2019/10/30 00:33:25 [TRACE] Completed graph transform *terraform.DiffTransformer with new graph:
+kubernetes_deployment.demo-nfs-deploy (prepare state) - *terraform.NodeApplyableResource
+kubernetes_service.demo-nfs-svc - *terraform.NodeApplyableResourceInstance
+  kubernetes_service.demo-nfs-svc (prepare state) - *terraform.NodeApplyableR2019-10-30T00:33:25.111+0800 [INFO]  plugin: configuring client automatic mTLS
+2019-10-30T00:33:25.140+0800 [DEBUG] plugin: starting plugin: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 args=[/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4]
+2019-10-30T00:33:25.142+0800 [DEBUG] plugin: plugin started: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65066
+2019-10-30T00:33:25.142+0800 [DEBUG] plugin: waiting for RPC address: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4
+2019-10-30T00:33:25.157+0800 [INFO]  plugin.terraform-provider-kubernetes_v1.9.0_x4: configuring server automatic mTLS: timestamp=2019-10-30T00:33:25.154+0800
+2019-10-30T00:33:25.182+0800 [DEBUG] plugin: using plugin: version=5
+2019-10-30T00:33:25.182+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: plugin address: address=/tmp/plugin950016291 network=unix timestamp=2019-10-30T00:33:25.182+0800
+2019-10-30T00:33:25.258+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:25 [INFO] Successfully loaded config file (/home/k8sadmin/.kube/config; default context)
+2019/10/30 00:33:25 [TRACE] [walkApply] Exiting eval tree: provider.kubernetes
+2019/10/30 00:33:25 [TRACE] vertex "provider.kubernetes": visit complete
+2019/10/30 00:33:25 [TRACE] dag/walk: visiting "kubernetes_deployment.demo-nfs-deploy (prepare state)"
+2019/10/30 00:33:25 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy (prepare state)": starting visit (*terraform.NodeApplyableResource)
+2019/10/30 00:33:25 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy (prepare state)": evaluating
+2019/10/30 00:33:25 [TRACE] [walkApply] Entering eval tree: kubernetes_deployment.demo-nfs-deploy (prepare state)
+2019/10/30 00:33:25 [TRACE] <root>: eval: *terraform.EvalWriteResourceState
+2019/10/30 00:33:25 [TRACE] [walkApply] Exiting eval tree: kubernetes_deployment.demo-nfs-deploy (prepare state)
+2019/10/30 00:33:25 [TRACE] vertex "kubernetes_deployment.demo-nfs-deploy (prepare state)": visit complete
+2019/10/30 00:33:25 [TRACE] dag/walk: visiting "kubernetes_service.demo-nfs-svc (prepare state)"
+2019/10/30 00:33:25 [TRACE] vertex "kubernetes_service.demo-nfs-svc (prepare state)": starting visit (*terraform.NodeApplyableResource)
+2019/10/30 00:33:25 [TRACE] vertex "kubernetes_service.demo-nfs-svc (prepare state)": evaluating
+2019/10/30 00:33:25 [TRACE] [walkApply] Entering eval tree: kubernetes_service.demo-nfs-svc (prepare state)
+2019/10/30 00:33:25 [TRACE] <root>: eval: *terraform.EvalWriteResourceState
+2019/10/30 00:33:25 [TRACE] [walkApply] Exiting eval tree: kubernetes_service.demo-nfs-svc (prepare state)
+2019/10/30 00:33:25 [TRACE] vertex "kubernetes_service.demo-nfs-svc (prepare state)": visit complete
+2019/10/30 00:33:25 [TRACE] dag/walk: visiting "kubernetes_service.demo-nfs-svc"
+2019/10/30 00:33:25 [TRACE] vertex "kubernetes_service.demo-nfs-svc": starting visit (*terraform.NodeApplyableResourceInstance)
+2019/10/30 00:33[0m[1mkubernetes_service.demo-nfs-svc: Creating...[0m[0m
+2019/10/30 00:33:25 [DEBUG] kubernetes_service.demo-nfs-svc: applying the planned Create change
+2019/10/30 00:33:25 [TRACE] GRPCProvider: ApplyResourceChange
+2019-10-30T00:33:25.263+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:25 [DEBUG] setting computed for "load_balancer_ingress" from ComputedKeys
+2019-10-30T00:33:25.264+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:25 [INFO] Creating new service: v1.Service{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ObjectMeta:v1.ObjectMeta{Name:"demo-nfs-svc", GenerateName:"", Namespace:"default", SelfLink:"", UID:"", ResourceVersion:"", Generation:0, CreationTimestamp:v1.Time{Time:time.Time{wall:0x0, ext:0, loc:(*time.Location)(nil)}}, DeletionTimestamp:(*v1.Time)(nil), DeletionGracePeriodSeconds:(*int64)(nil), Labels:map[string]string(nil), Annotations:map[string]string(nil), OwnerReferences:[]v1.OwnerReference(nil), Initializers:(*v1.Initializers)(nil), Finalizers:[]string(nil), ClusterName:""}, Spec:v1.ServiceSpec{Ports:[]v1.ServicePort{v1.ServicePort{Name:"http", Protocol:"TCP", Port:80, TargetPort:intstr.IntOrString{Type:0, IntVal:80, StrVal:""}, NodePort:30080}}, Selector:map[string]string{"app":"nginx-nfs"}, ClusterIP:"", Type:"NodePort", ExternalIPs:[]string(nil), SessionAffinity:"None", LoadBalancerIP:"", LoadBalancerSourceRanges:[]string(nil), ExternalName:"", ExternalTrafficPolicy:"Cluster", HealthCheckNodePort:0, PublishNotReadyAddresses:false, SessionAffinityConfig:(*v1.SessionAffinityConfig)(nil)}, Status:v1.ServiceStatus{LoadBalancer:v1.LoadBalancerStatus{Ingress:[]v1.LoadBalancerIngress(nil)}}}
+2019-10-30T00:33:25.284+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:25 [INFO] Submitted new service: &v1.Service{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ObjectMeta:v1.ObjectMeta{Name:"demo-nfs-svc", GenerateName:"", Namespace:"default", SelfLink:"/api/v1/namespaces/default/services/demo-nfs-svc", UID:"f61d9cd2-6a8b-439a-8b10-99963c1aa427", ResourceVersion:"207421", Generation:0, CreationTimestamp:v1.Time{Time:time.Time{wall:0x0, ext:63707963605, loc:(*time.Location)(0x3156ee0)}}, DeletionTimestamp:(*v1.Time)(nil), DeletionGracePeriodSeconds:(*int64)(nil), Labels:map[string]string(nil), Annotations:map[string]string(nil), OwnerReferences:[]v1.OwnerReference(nil), Initializers:(*v1.Initializers)(nil), Finalizers:[]string(nil), ClusterName:""}, Spec:v1.ServiceSpec{Ports:[]v1.ServicePort{v1.ServicePort{Name:"http", Protocol:"TCP", Port:80, TargetPort:intstr.IntOrString{Type:0, IntVal:80, StrVal:""}, NodePort:30080}}, Selector:map[string]string{"app":"nginx-nfs"}, ClusterIP:"10.110.116.125", Type:"NodePort", ExternalIPs:[]string(nil), SessionAffinity:"None", LoadBalancerIP:"", LoadBalancerSourceRanges:[]string(nil), ExternalName:"", ExternalTrafficPolicy:"Cluster", HealthCheckNodePort:0, PublishNotReadyAddresses:false, SessionAffinityConfig:(*v1.SessionAffinityConfig)(nil)}, Status:v1.ServiceStatus{LoadBalancer:v1.LoadBalancerStatus{Ingress:[]v1.LoadBalancerIngress(nil)}}}
+2019-10-30T00:33:25.284+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:25 [INFO] Reading service demo-nfs-svc
+2019-10-30T00:33:25.292+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:25 [INFO] Received service: &v1.Service{TypeMeta:v1.TypeMeta{Kind:"", APIVersion:""}, ObjectMeta:v1.ObjectMeta{Name:"demo-nfs-svc", GenerateName:"", Namespace:"default", SelfLink:"/api/v1/namespaces/default/services/demo-nfs-svc", UID:"f61d9cd2-6a8b-439a-8b10-99963c1aa427", ResourceVersion:"207421", Generation:0, CreationTimestamp:v1.Time{Time:time.Time{wall:0x0, ext:63707963605, loc:(*time.Location)(0x3156ee0)}}, DeletionTimestamp:(*v1.Time)(nil), DeletionGracePeriodSeconds:(*int64)(nil), Labels:map[string]string(nil), Annotations:map[string]string(nil), OwnerReferences:[]v1.OwnerReference(nil), Initializers:(*v1.Initializers)(nil), Finalizers:[]string(nil), ClusterName:""}, Spec:v1.ServiceSpec{Ports:[]v1.ServicePort{v1.ServicePort{Name:"http", Protocol:"TCP", Port:80, TargetPort:intstr.IntOrString{Type:0, IntVal:80, StrVal:""}, NodePort:30080}}, Selector:map[string]string{"app":"nginx-nfs"}, ClusterIP:"10.110.116.125", Type:"NodePort", ExternalIPs:[]string(nil), SessionAffinity:"None", LoadBalancerIP:"", LoadBalancerSourceRanges:[]string(nil), ExternalName:"", ExternalTrafficPolicy:"Cluster", HealthCheckNodePort:0, PublishNotReadyAddresses:false, SessionAffinityConfig:(*v1.SessionAffinityConfig)(nil)}, Status:v1.ServiceStatus{LoadBalancer:v1.LoadBalancerStatus{Ingress:[]v1.LoadBalancerIngress(nil)}}}
+2019/10/30 00:33:25 [WARN] Provider "kubernetes" produced an unexpected new value for kubernetes_service.demo-nfs-svc, but we are tolerating it because it is using the legacy plugin SDK.
+    The following problems may be the cause of any confusing errors from downstream operations:
+      - .metadata[0].generate_name: was null, but now cty.StringVal("")
+      - .spec[0].external_name: was null, but now cty.StringVal("")
+      - .spec[0].load_balancer_ip: was null, but now cty.StringVal("")
+2019/10/30 00:33:25 [TRACE] <root>: eval: *terraform.EvalMaybeTainted
+2019/10/30 00:33:25 [TRACE] <root>: eval: *terraform.EvalWriteState
+2019/10/30 00:33:25 [TRACE] EvalWriteState: writing current state object for kubernetes_service.demo-nfs-svc
+[0m[1mkubernetes_service.demo-nfs-svc: Creation complete after 0s [id=default/demo-nfs-svc][0m[0m
+2019-10-30T00:33:25.295+0800 [DEBUG] plugin.terraform-provider-kubernetes_v1.9.0_x4: 2019/10/30 00:33:25 [DEBUG] Flattened service spec: []interface {}{map[string]interface {}{"cluster_ip":"10.110.116.125", "external_traffic_policy":"Cluster", "port":[]interface {}{map[string]interface {}{"name":"http", "node_port":30080, "port":80, "protocol":"TCP", "target_port":"80"}}, "publish_not_ready_addresses":false, "selector":map[string]string{"app":"nginx-nfs"}, "session_affinity":"None", "type":"NodePort"}}
+2019-10-30T00:33:25.299+0800 [DEBUG] plugin: plugin process exited: path=/home/k8sadmin/terraform_demo/pv-nfs-nginx.demo/.terraform/plugins/linux_amd64/terraform-provider-kubernetes_v1.9.0_x4 pid=65066
+2019-10-30T00:33:25.299+0800 [DEBUG] plugin: plugin exited
+2019/10/30 00:33:25 [TRACE] [walkApply] Exiting eval tree: provider.kubernetes (close)
+2019/10/30 00:33:25 [TRACE] vertex "provider.kubernetes (close)": visit complete
+[0m[1m[32m
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.[0m

@@ -1,0 +1,214 @@
+
+# kubernetes_deployment.nginx-nfs-deploy:
+resource "kubernetes_deployment" "nginx-nfs-deploy" {
+    id = "default/nginx-nfs-deploy"
+
+    metadata {
+        annotations      = {}
+        generation       = 1
+        labels           = {}
+        name             = "nginx-nfs-deploy"
+        namespace        = "default"
+        resource_version = "185341"
+        self_link        = "/apis/apps/v1/namespaces/default/deployments/nginx-nfs-deploy"
+        uid              = "0a3b445e-ead2-4109-83bb-879603b63648"
+    }
+
+    spec {
+        min_ready_seconds         = 0
+        paused                    = false
+        progress_deadline_seconds = 600
+        replicas                  = 1
+        revision_history_limit    = 10
+
+        selector {
+            match_labels = {
+                "app" = "nginx-nfs"
+            }
+        }
+
+        strategy {
+            type = "RollingUpdate"
+
+            rolling_update {
+                max_surge       = "25%"
+                max_unavailable = "25%"
+            }
+        }
+
+        template {
+            metadata {
+                annotations = {}
+                generation  = 0
+                labels      = {
+                    "app" = "nginx-nfs"
+                }
+            }
+
+            spec {
+                active_deadline_seconds          = 0
+                automount_service_account_token  = false
+                dns_policy                       = "ClusterFirst"
+                host_ipc                         = false
+                host_network                     = false
+                host_pid                         = false
+                node_selector                    = {}
+                restart_policy                   = "Always"
+                share_process_namespace          = false
+                termination_grace_period_seconds = 30
+
+                container {
+                    args                     = []
+                    command                  = []
+                    image                    = "nginx"
+                    image_pull_policy        = "Always"
+                    name                     = "nginx-nfs"
+                    stdin                    = false
+                    stdin_once               = false
+                    termination_message_path = "/dev/termination-log"
+                    tty                      = false
+
+                    port {
+                        container_port = 80
+                        host_port      = 0
+                        protocol       = "TCP"
+                    }
+
+                    resources {
+                    }
+
+                    volume_mount {
+                        mount_path = "/usr/share/nginx/"
+                        name       = "nfs-pvc-storage"
+                        read_only  = false
+                    }
+                }
+
+                volume {
+                    name = "nfs-pvc-storage"
+
+                    persistent_volume_claim {
+                        claim_name = "pv-nfs-claim"
+                        read_only  = false
+                    }
+                }
+            }
+        }
+    }
+
+    timeouts {}
+}
+
+# kubernetes_persistent_volume.pv-nfs:
+resource "kubernetes_persistent_volume" "pv-nfs" {
+    id = "pv-nfs"
+
+    metadata {
+        annotations      = {}
+        generation       = 0
+        labels           = {}
+        name             = "pv-nfs"
+        resource_version = "168065"
+        self_link        = "/api/v1/persistentvolumes/pv-nfs"
+        uid              = "52c62c2e-4f4f-42f5-8fb3-b63b4f044a59"
+    }
+
+    spec {
+        access_modes                     = [
+            "ReadWriteMany",
+        ]
+        capacity                         = {
+            "storage" = "15Gi"
+        }
+        persistent_volume_reclaim_policy = "Retain"
+        storage_class_name               = "pv-nfs-class"
+
+        persistent_volume_source {
+
+            nfs {
+                path      = "/nfsshare"
+                read_only = false
+                server    = "nfsserver"
+            }
+        }
+    }
+}
+
+# kubernetes_persistent_volume_claim.pv-nfs-claim:
+resource "kubernetes_persistent_volume_claim" "pv-nfs-claim" {
+    id               = "default/pv-nfs-claim"
+    wait_until_bound = true
+
+    metadata {
+        annotations      = {}
+        generation       = 0
+        labels           = {}
+        name             = "pv-nfs-claim"
+        namespace        = "default"
+        resource_version = "168067"
+        self_link        = "/api/v1/namespaces/default/persistentvolumeclaims/pv-nfs-claim"
+        uid              = "d7e03068-80b0-439f-bacb-4d1ce4c739b7"
+    }
+
+    spec {
+        access_modes       = [
+            "ReadWriteMany",
+        ]
+        storage_class_name = "pv-nfs-class"
+        volume_name        = "pv-nfs"
+
+        resources {
+            limits   = {}
+            requests = {
+                "storage" = "5Gi"
+            }
+        }
+    }
+
+    timeouts {}
+}
+
+# kubernetes_service.nginx-nfs-svc:
+resource "kubernetes_service" "nginx-nfs-svc" {
+    id                    = "default/nginx-nfs-svc"
+    load_balancer_ingress = []
+
+    metadata {
+        annotations      = {}
+        generation       = 0
+        labels           = {}
+        name             = "nginx-nfs-svc"
+        namespace        = "default"
+        resource_version = "185318"
+        self_link        = "/api/v1/namespaces/default/services/nginx-nfs-svc"
+        uid              = "2897d00d-e9a5-4db3-a1e4-680dddb01fa2"
+    }
+
+    spec {
+        cluster_ip                  = "10.99.42.118"
+        external_ips                = [
+            "172.17.172.202",
+            "192.168.251.63",
+        ]
+        external_traffic_policy     = "Cluster"
+        load_balancer_source_ranges = []
+        publish_not_ready_addresses = false
+        selector                    = {
+            "app" = "nginx-nfs"
+        }
+        session_affinity            = "None"
+        type                        = "LoadBalancer"
+
+        port {
+            name        = "http"
+            node_port   = 32179
+            port        = 80
+            protocol    = "TCP"
+            target_port = "80"
+        }
+    }
+}
+
+
+
+
