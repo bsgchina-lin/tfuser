@@ -1,5 +1,6 @@
 terraform {
   backend "remote" {
+    required_version = "~> 0.12.0"
     organization = "bsgchina"
 
     workspaces {
@@ -16,9 +17,9 @@ provider "kubernetes" {
 resource "kubernetes_pod" "echo" {
   metadata {
     name = "echo-example"
-    labels {
-      App = "echo"
-    }
+#    labels {
+#      App = "echo"
+#    }
    }
   spec {
     container {
